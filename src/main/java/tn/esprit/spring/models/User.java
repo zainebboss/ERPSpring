@@ -11,6 +11,8 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Builder.Default;
+
 
 @Entity
 @Table(name = "users", 
@@ -40,28 +42,25 @@ public class User {
   @Size(max = 50)
   private String phone;
 
-  @NotBlank
-  @Size(max = 50)
+
   private Date birth;
 
-  @NotBlank
-  @Size(max = 50)
+
   private Date contractStart;
 
-  @NotBlank
-  @Size(max = 50)
+
   private Date contractEnd;
 
   @NotBlank
   @Size(max = 50)
   private String occupation;
 
-  @NotBlank
+ @NotBlank
   @Size(max = 120)
   @Column
   private String salary;
 
-  @NotBlank
+//  @NotBlank
   @Size(max = 120)
   private String password;
   
@@ -84,10 +83,18 @@ public class User {
   public User() {
   }
 
-  public User(String username, String email, String password) {
+  public User(String username, String email, String password, String address, String phone, Date birth, Date contractStart, Date contractEnd, String occupation, String salary) {
     this.username = username;
     this.email = email;
     this.password = password;
+    this.address = address;
+    this.phone = phone;
+    this.birth = birth;
+    this.contractStart = contractStart;
+    this.contractEnd = contractEnd;
+    this.occupation = occupation;
+    this.salary = salary;
+
   }
 
   public Long getId() {

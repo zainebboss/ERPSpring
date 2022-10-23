@@ -10,6 +10,7 @@ import tn.esprit.spring.models.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
   Optional<User> findByUsername(String username);
+  Optional<User> findById(String userId);
 
   Boolean existsByUsername(String username);
 

@@ -4,6 +4,7 @@ package tn.esprit.spring.controllers;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,14 +12,19 @@ import org.springframework.web.bind.annotation.*;
 
 import tn.esprit.spring.models.Absense;
 import tn.esprit.spring.models.User;
+import tn.esprit.spring.repository.UserRepository;
 import tn.esprit.spring.service.AbsenseService;
+import tn.esprit.spring.service.UserService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/absenses")
 public class AbsenseController {
 
     @Autowired
     private AbsenseService absenseService;
+    @Autowired
+    UserService userService;
 
 
     @GetMapping("/all")
@@ -31,13 +37,17 @@ public class AbsenseController {
 
     @ResponseBody
 
-    public Absense addAbsense(@RequestBody Absense a)
+    public Absense addAbsense(@RequestBody Absense data)
 
     {
+    	User user= userService.getUserById(data.getUser().getId());
+    	
 
-    	Absense absense = absenseService.addAbsense(a);
+    	Absense absense = new Absense();
+    	absense.setDate(data.getDate());
+    	absense.setUser(user);
 
-    return absense;
+    return absenseService.addAbsense(absense);
 
     }
 
@@ -78,11 +88,7 @@ public class AbsenseController {
     // model.addAttribute("employee", employee);
     // return "employees/details";
     // }
-
-    // @GetMapping("/edit/{id}")
-    // public String showFormForUpdate(@PathVariable(value = "id") long id, Model
-    // model) {
-    // Employee employee = absenseService.getEmployeeById(id);
+// employee = absenseService.getEmployeeById(id);
 
     // model.addAttribute("employee", employee);
     // return "employees/edit";

@@ -10,15 +10,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import tn.esprit.spring.models.Absense;
+import tn.esprit.spring.models.User;
 import tn.esprit.spring.models.Vacation;
+import tn.esprit.spring.service.AbsenseService;
+import tn.esprit.spring.service.UserService;
 import tn.esprit.spring.service.VacationService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/vacations")
 public class VacationController {
 
     @Autowired
     private VacationService vacationService;
+    @Autowired
+    private UserService userService;
 
 
     @GetMapping("/all")
@@ -32,13 +38,19 @@ public class VacationController {
 
     @ResponseBody
 
-    public Vacation addAbsense(@RequestBody Vacation v)
+    public Vacation addAbsense(@RequestBody Vacation data)
 
     {
+    	System.out.print(data);
+    	User user= userService.getUserById(data.getUser().getId());
+    	
+    	Vacation vacation = new Vacation();
+    	vacation.setEnd(data.getEnd());
+    	vacation.setStart(data.getStart());
+    	vacation.setUser(user);
 
-    	Vacation vacation = vacationService.saveVacation(v);
-
-    return vacation;
+    return vacationService.saveVacation(vacation);
+    
 
     }
    

@@ -1,11 +1,9 @@
 package tn.esprit.spring.models;
 
 import javax.persistence.*;
-
 import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.*;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -16,16 +14,13 @@ public class Absense {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-  public long getId() {
-    return this.id;
-  }
-
-  public void setId(long id) {
-    this.id = id;
-  }
+ 
 
   @ManyToOne
   private User user;
+  @Column
+  private String date;
+  
 
   public User getUser() {
     return this.user;
@@ -35,8 +30,14 @@ public class Absense {
     this.user = user;
   }
 
-  @Column
-  private String date;
+  
+  public long getId() {
+	    return this.id;
+	  }
+
+	  public void setId(long id) {
+	    this.id = id;
+	  }
 
   public String getDate() {
     return this.date;

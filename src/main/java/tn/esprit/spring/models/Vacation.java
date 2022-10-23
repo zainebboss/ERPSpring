@@ -15,6 +15,14 @@ public class Vacation {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
+  @ManyToOne()
+  private User user;
+  @Column
+  private String end;
+  @Column
+  private String start;
+
+
 
   public long getId() {
     return this.id;
@@ -24,9 +32,6 @@ public class Vacation {
     this.id = id;
   }
 
-  @ManyToOne()
-  private User user;
-
   public User getUser() {
     return this.user;
   }
@@ -35,9 +40,7 @@ public class Vacation {
     this.user = user;
   }
 
-  @Column
-  private String end;
-
+  
   public String getEnd() {
     return this.end;
   }
@@ -46,9 +49,7 @@ public class Vacation {
     this.end = end;
   }
 
-  @Column
-  private String start;
-
+ 
   public String getStart() {
     return this.start;
   }

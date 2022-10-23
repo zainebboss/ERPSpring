@@ -1,7 +1,9 @@
 package tn.esprit.spring.payload.request;
 
+import java.sql.Date;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.validation.constraints.*;
 
 public class SignupRequest {
@@ -20,7 +22,91 @@ public class SignupRequest {
   @Size(min = 6, max = 40)
   private String password;
 
-  public String getUsername() {
+  
+  @NotBlank
+  @Size(max = 50)
+  private String address;
+
+  @NotBlank
+  @Size(max = 50)
+  private String phone;
+
+
+  private Date birth;
+
+
+  private Date contractStart;
+
+ 
+  private Date contractEnd;
+
+  @NotBlank
+  @Size(max = 50)
+  private String occupation;
+
+ @NotBlank
+  @Size(max = 120)
+  @Column
+  private String salary;
+
+  
+  public String getAddress() {
+	return address;
+}
+
+public void setAddress(String address) {
+	this.address = address;
+}
+
+public String getPhone() {
+	return phone;
+}
+
+public void setPhone(String phone) {
+	this.phone = phone;
+}
+
+public Date getBirth() {
+	return birth;
+}
+
+public void setBirth(Date birth) {
+	this.birth = birth;
+}
+
+public Date getContractStart() {
+	return contractStart;
+}
+
+public void setContractStart(Date contractStart) {
+	this.contractStart = contractStart;
+}
+
+public Date getContractEnd() {
+	return contractEnd;
+}
+
+public void setContractEnd(Date contractEnd) {
+	this.contractEnd = contractEnd;
+}
+
+public String getOccupation() {
+	return occupation;
+}
+
+public void setOccupation(String occupation) {
+	this.occupation = occupation;
+}
+
+public String getSalary() {
+	return salary;
+}
+
+public void setSalary(String salary) {
+	this.salary = salary;
+}
+
+public String getUsername() {
     return username;
   }
 
